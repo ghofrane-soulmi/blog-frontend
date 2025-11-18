@@ -1,0 +1,64 @@
+<div class="articles-feed">
+  <div *ngFor="let article of articles" class="article-card mat-elevation-z4">
+
+    <img *ngIf="article.picture" [src]="article.picture" class="article-image">
+
+    <div class="article-content">
+      <h2>{{ article.title }}</h2>
+      <p>{{ article.content }}</p>
+    </div>
+
+    <button mat-button color="primary" (click)="toggleComments(article._id)">
+      {{ article.showComments ? 'Hide Comments' : 'Show Comments' }}
+    </button>
+
+    <div *ngIf="article.showComments" class="comments-section">
+      <h3>Comments</h3>
+
+
+      <ng-container *ngFor="let comment of article.comments">
+        <ng-template
+          [ngTemplateOutlet]="commentTpl"
+          [ngTemplateOutletContext]="{ comment: comment, level: 0, articleId: article._id }">
+        </ng-template>
+      </ng-container>
+
+
+      <div class="add-comment">
+        <input [(ngModel)]="newComment[article._id]" placeholder="Write a comment..." />
+        <button mat-icon-button color="primary" (click)="addComment(article._id)">
+          <mat-icon>send</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #commentTpl let-comment="comment" let-level="level" let-articleId="articleId">
+  <div class="comment-box" [style.marginLeft.px]="level * 30">
+
+    <strong>{{ comment.author.name }}</strong>
+    <p>{{ comment.text }}</p>
+
+    <button mat-button (click)="comment.showReply = !comment.showReply">
+      Reply
+    </button>
+
+    <div *ngIf="comment.showReply" class="reply-box">
+      <input [(ngModel)]="replyText[comment._id]" placeholder="Reply..." />
+      <button mat-icon-button (click)="addComment(articleId, comment._id)">
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
+
+
+    <ng-container *ngFor="let child of comment.children">
+      <ng-template
+        [ngTemplateOutlet]="commentTpl"
+        [ngTemplateOutletContext]="{ comment: child, level: level+1, articleId: articleId }">
+      </ng-template>
+    </ng-container>
+
+  </div>
+</ng-template>

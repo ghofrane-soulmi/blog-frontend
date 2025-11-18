@@ -1,0 +1,46 @@
+.navbar {
+  display: flex;
+}
+.menu-buttons button {
+  transition: background-color 0.3s, color 0.3s;
+
+
+  &:hover {
+    background-color: #3f51b5;
+    color: white;
+  }
+}
+
+
+.menu-buttons button.active-link {
+  background-color: #303f9f;
+  color: white;
+}
+
+
+.notification-badge {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  margin-left: 5px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+.notification-badge {
+  background-color: #e53935;
+  color: #fff;
+  border-radius: 50%;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 12px;
+  height: 17px;
+}

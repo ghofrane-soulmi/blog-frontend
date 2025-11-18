@@ -1,0 +1,43 @@
+.dashboard-container {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+
+  h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  .chart-card {
+    width: 100%;
+    max-width: 900px;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+    h3 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+  }
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.notif-badge {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 0 8px;
+  font-size: 12px;
+  margin-left: 5px;
+}
