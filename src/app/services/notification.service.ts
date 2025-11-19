@@ -32,15 +32,6 @@ export class NotificationService {
     return this.http.get('http://localhost:4000/api/notifications');
   }
 
-  markAllRead(): Observable<any> {
-    return this.http
-      .patch('http://localhost:4000/api/notifications/markAllRead', {})
-      .pipe(
-        tap(() => this.unreadCountSubject.next(0)) // reset compteur
-      );
-  }
-
-
   onNewNotification(): Observable<any> {
     return this.newNotification$.asObservable();
   }
